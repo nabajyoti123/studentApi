@@ -13,7 +13,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "    {\r\n    \"firstName\": \"ghyi\",\r\n    \"lastName\": \"gjjk\",\r\n    \"dob\": \"10-07-1993\",\r\n    \"section\": \"C\",\r\n    \"gender\": \"M\",\r\n    \"marks1\": 37,\r\n    \"marks2\": 37,\r\n    \"marks3\": 37\r\n    }",
+					"raw": "    {\r\n    \"firstName\": \"hghh\",\r\n    \"lastName\": \"ggh\",\r\n    \"dob\": \"29-12-2003\",\r\n    \"section\": \"B\",\r\n    \"gender\": \"M\",\r\n    \"marks1\": 38,\r\n    \"marks2\": 38,\r\n    \"marks3\": 38\r\n    }",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -21,6 +21,24 @@
 					}
 				},
 				"url": "http://localhost:8080/v1/student/create"
+			},
+			"response": []
+		},
+		{
+			"name": "updateStudent",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\r\n    \"firstName\": \"ghyi\",\r\n    \"lastName\": \"gjjk\",\r\n    \"dob\": \"10-07-1993\",\r\n    \"section\": \"C\",\r\n    \"gender\": \"M\",\r\n    \"marks1\": 38,\r\n    \"marks2\": 37,\r\n    \"marks3\": 37\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/v1/student/update/1"
 			},
 			"response": []
 		},
