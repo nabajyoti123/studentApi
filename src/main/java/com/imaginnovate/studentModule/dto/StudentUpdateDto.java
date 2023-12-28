@@ -1,33 +1,52 @@
-package com.imaginnovate.studentModule.entity;
+package com.imaginnovate.studentModule.dto;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.Period;
 import java.util.Date;
-import java.util.Locale;
 
-import javax.persistence.*;
+import javax.validation.constraints.DecimalMax;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
-import com.imaginnovate.studentModule.dto.StudentBasicDto;
-import com.imaginnovate.studentModule.exception.InvalidDOBException;
-import com.imaginnovate.studentModule.util.AppUtil;
+import com.sun.istack.NotNull;
 
 
-
-@Entity
-@Table(name = "Students")
-public class StudentEntity {
-	 @Id
-	    @GeneratedValue(strategy = GenerationType.AUTO)
+public class StudentUpdateDto {
 	Long Id;
+	//@NotEmpty(message="FirstName cant be empty")
+	@Size(min=3,message = "First Name must be at least 3 characters long")
 	 String firstName;
+	
+	//@NotEmpty(message="Lastname cant be empty")
+	@Size(min=3,message = "Last Name must be at least 3 characters long")
 	 String lastName;
-	 Date dob;
+	
+	//@NotEmpty(message="DOB should be in DD-MM-YYYY format")
+	 String dob;
+	
+	//@NotEmpty(message="Section Cannot be empty")
+	@Pattern(regexp = "^[A-C]*$" , message="Gender should be A/B/C")
 	 String section;
+	
+	@Pattern(regexp = "^[MF]*$" , message="Gender should be M/F")
+	//@NotEmpty(message="Gender Cannot be empty")
 	 String gender;
+	
+	@Max(100)
+	@Min(0)
+	@NotNull
 	 Integer marks1;
-	 Integer marks2;
-	 Integer marks3;
+	@Max(100)
+	@Min(0)
+	@NotNull
+	Integer marks2;
+	@Max(100)
+	@Min(0)
+	@NotNull()
+	Integer marks3;
+	
+	//to get calculated autometically
 	 Integer total;
 	 Double average;
 	 String result;
@@ -51,10 +70,10 @@ public class StudentEntity {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	public Date getDob() {
+	public String getDob() {
 		return dob;
 	}
-	public void setDob(Date dob) {
+	public void setDob(String dob) {
 		this.dob = dob;
 	}
 	public String getSection() {
@@ -105,7 +124,7 @@ public class StudentEntity {
 	public void setResult(String result) {
 		this.result = result;
 	}
-	public StudentEntity(Long id, String firstName, String lastName, Date dob, String section, String gender,
+	public StudentUpdateDto(Long id, String firstName, String lastName, String dob, String section, String gender,
 			int marks1, int marks2, int marks3, int total, Double average, String result) {
 		super();
 		Id = id;
@@ -121,29 +140,7 @@ public class StudentEntity {
 		this.average = average;
 		this.result = result;
 	}
-	
-	public StudentEntity(StudentBasicDto sd) throws ParseException, InvalidDOBException {
-		super();
-		this.firstName = sd.getFirstName();
-		this.lastName = sd.getLastName();
-		
-		if(!AppUtil.checkIfDobValid(sd.getDob())){
-			return;
-		}else{
-			SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH);
-			this.dob = formatter.parse(sd.getDob());
-		}
-		
-		this.section = sd.getSection();
-		this.gender = sd.getGender();
-		this.marks1 = sd.getMarks1();
-		this.marks2 = sd.getMarks2();
-		this.marks3 = sd.getMarks3();
-		this.total = sd.getTotal();
-		this.average = sd.getAverage();
-		this.result = sd.getResult();
-	}
-	public StudentEntity() {
+	public StudentUpdateDto() {
 		super();
 		// TODO Auto-generated constructor stub
 	}

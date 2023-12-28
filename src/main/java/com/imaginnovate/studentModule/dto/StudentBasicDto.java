@@ -12,7 +12,7 @@ import javax.validation.constraints.Size;
 import com.sun.istack.NotNull;
 
 
-public class StudentDto {
+public class StudentBasicDto {
 	Long Id;
 	@NotEmpty(message="FirstName cant be empty")
 	@Size(min=3,message = "First Name must be at least 3 characters long")
@@ -35,16 +35,13 @@ public class StudentDto {
 	
 	@Max(100)
 	@Min(0)
-	@NotNull
-	 Integer marks1;
+	int marks1;
 	@Max(100)
 	@Min(0)
-	@NotNull
-	Integer marks2;
+	int marks2;
 	@Max(100)
 	@Min(0)
-	@NotNull()
-	Integer marks3;
+	int marks3;
 	
 	//to get calculated autometically
 	 Integer total;
@@ -124,7 +121,7 @@ public class StudentDto {
 	public void setResult(String result) {
 		this.result = result;
 	}
-	public StudentDto(Long id, String firstName, String lastName, String dob, String section, String gender,
+	public StudentBasicDto(Long id, String firstName, String lastName, String dob, String section, String gender,
 			int marks1, int marks2, int marks3, int total, Double average, String result) {
 		super();
 		Id = id;
@@ -140,7 +137,7 @@ public class StudentDto {
 		this.average = average;
 		this.result = result;
 	}
-	public StudentDto() {
+	public StudentBasicDto() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
