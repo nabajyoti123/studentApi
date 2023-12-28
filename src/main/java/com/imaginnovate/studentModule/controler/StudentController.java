@@ -47,7 +47,7 @@ public class StudentController {
 	}
 	
 	@PutMapping(value = "/update/{id}", consumes = { "application/xml", "application/json" })
-	public ResponseEntity<StudentEntity> updateStudent(@Valid @RequestBody StudentUpdateDto studDto,@PathVariable(value = "id") Long id) throws ParseException {
+	public ResponseEntity<StudentEntity> updateStudent(@Valid @RequestBody StudentUpdateDto studDto,@PathVariable(value = "id") Long id) throws ParseException, InvalidDOBException {
 		StudentEntity savedStudent = studentService.updateStudent(studDto,id);
 		return new ResponseEntity<StudentEntity>(savedStudent, HttpStatus.OK);
 	}
